@@ -16,6 +16,8 @@ namespace CMP1903M_A01_2223
             Console.WriteLine("The pack contains {0} cards.", pack.GetPack().Count);
             Console.WriteLine();
 
+            ProgramTest.RunTests();
+
             bool exit = false;
             while (!exit)
             {

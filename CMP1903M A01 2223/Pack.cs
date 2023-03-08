@@ -37,8 +37,42 @@ namespace CMP1903M_A01_2223
                     }
                     return true;
                 case 2: // Riffle Shuffle
-                    // Implement Riffle Shuffle here
+                    List<Card> topHalf = new List<Card>();
+                    List<Card> bottomHalf = new List<Card>();
+                    int cutPoint = rand.Next(1, pack.Count - 1);
+                    for (int i = 0; i < cutPoint; i++)
+                    {
+                        topHalf.Add(pack[i]);
+                    }
+                    for (int i = cutPoint; i < pack.Count; i++)
+                    {
+                        bottomHalf.Add(pack[i]);
+                    }
+                    pack.Clear();
+                    while (topHalf.Count > 0 || bottomHalf.Count > 0)
+                    {
+                        if (topHalf.Count > 0)
+                        {
+                            int takeCount = rand.Next(1, Math.Min(4, topHalf.Count + 1));
+                            for (int i = 0; i < takeCount; i++)
+                            {
+                                pack.Add(topHalf[0]);
+                                topHalf.RemoveAt(0);
+                            }
+                        }
+                        if (bottomHalf.Count > 0)
+                        {
+                            int takeCount = rand.Next(1, Math.Min(4, bottomHalf.Count + 1));
+                            for (int i = 0; i < takeCount; i++)
+                            {
+                                pack.Add(bottomHalf[0]);
+                                bottomHalf.RemoveAt(0);
+                            }
+                        }
+                    }
                     return true;
+
+                    
                 case 3: // No Shuffle
                     return true;
                 default:
@@ -59,6 +93,7 @@ namespace CMP1903M_A01_2223
                 return null;
             }
         }
+
 
         public List<Card> DealCard(int amount)
         {
